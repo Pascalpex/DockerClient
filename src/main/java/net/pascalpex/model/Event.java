@@ -1,5 +1,8 @@
 package net.pascalpex.model;
 
+/**
+ * The Event class is a data class used by the Events class which stores all the information about one event
+ */
 public class Event {
 
     private String customerId;

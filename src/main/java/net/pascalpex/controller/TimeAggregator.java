@@ -4,18 +4,24 @@ import com.google.gson.Gson;
 import net.pascalpex.model.Event;
 import net.pascalpex.model.Events;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The TimeAggregator class is used to calculate the sum of time used by each user
+ */
 public class TimeAggregator {
 
     private final String input;
-    private Map<String, HashMap<String, Long>> eventStarts;
+    private final Map<String, HashMap<String, Long>> eventStarts;
 
-    private Map<String, Long> times;
+    private final Map<String, Long> times;
 
+    /**
+     * Constructs a TimeAggregator object and evaluates the given input
+     * @param input List of Events expected as JSON
+     */
     public TimeAggregator(String input) {
         this.input = input;
         eventStarts = new HashMap<>();
@@ -23,6 +29,10 @@ public class TimeAggregator {
         loadEvents();
     }
 
+    /**
+     * Evaluates the current input and calculates the time used by each user
+     * The result is stored in the times Map
+     */
     private void loadEvents() {
         Gson gson = new Gson();
         Events events = gson.fromJson(input, Events.class);

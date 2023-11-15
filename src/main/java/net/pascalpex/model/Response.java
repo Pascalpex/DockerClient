@@ -1,5 +1,8 @@
 package net.pascalpex.model;
 
+/**
+ * The Response class is a data class used to receive and evaluate the response from the server after sending a Result
+ */
 public class Response {
 
     private int code;

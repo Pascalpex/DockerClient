@@ -17,12 +17,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The NetworkManager provides methods for receiving the dataset from the server and sending the result back
+ */
 public class NetworkManager {
 
-    private final static String BASE_URL = "http://server:8080/v1/";
+    private final static String BASE_URL = "http://server:8080/v1/"; // Hostname is set in docker-compose.yml
     private final static String GET_URL = BASE_URL + "dataset";
     private final static String POST_URL = BASE_URL + "result";
 
+    /**
+     * Receives the dataset from the server
+     * @return Received data as JSON string
+     * @throws IOException Is thrown when server connection failed or any other IO-related error occurred
+     */
     public String getDataset() throws IOException {
         StringBuilder result = new StringBuilder();
         URL url = new URL(GET_URL);
@@ -34,6 +42,11 @@ public class NetworkManager {
         return result.toString();
     }
 
+    /**
+     * Sends the calculated results back to the server using a POST request
+     * @param times Calculated results to send
+     * @return true if server responded with 200 OK | false if connection failed or server responded with any other status code
+     */
     public boolean postResults(Map<String, Long> times) {
         try {
             Gson gson = new Gson();
